@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogManager : MonoBehaviour
 {
@@ -17,9 +18,13 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private GameObject choicePanel;
     [SerializeField]
+    private GameObject namePanel;
+    [SerializeField]
     private IntSO choiceIndex;
     [SerializeField]
     private SimpleChoiceListSO choiceList;
+
+    private 
     // Start is called before the first frame update
     void Awake()
     {
@@ -37,25 +42,30 @@ public class DialogManager : MonoBehaviour
     {
         if (newName.Length > 0)
         {
+            namePanel.SetActive(true);
             characterName.text = newName;
+        } else
+        {
+            namePanel.SetActive(false);
         }
     }
 
     private void CreateChoices()
     {
+        choicePanel.SetActive(true);
         for (int i = 0; i < choiceList.Value.Count; i++)
         {
             SimpleChoice choice = choiceList.Value[i];
-            Button button = CreateChoiceView(choice.choiceText);
+            Button button = CreateChoiceButton(choice.choiceText);
 
             button.onClick.AddListener(delegate {
                 OnChooseChoice(choice.index);
             });
         }
-        choicePanel.SetActive(true);
+
     }
 
-    Button CreateChoiceView(string text)
+    Button CreateChoiceButton(string text)
     {
         // Creates the button from a prefab
         Button choice = Instantiate(buttonPrefab) as Button;
@@ -71,6 +81,7 @@ public class DialogManager : MonoBehaviour
     void OnChooseChoice(int selectedChoice)
     {
         choiceIndex.Value = selectedChoice;
+        EventSystem.current.SetSelectedGameObject(null);
         RemoveChoices();
         choicePanel.SetActive(false);
     }

@@ -11,26 +11,39 @@ public class InkController : MonoBehaviour
 	private TextAsset inkJSONAsset = null;
 	public Story story;
 
-	[SerializeField]
-	private Canvas canvas = null;
-
 	public static event Action<Story> OnCreateStory;
-	public StringSO dialogText;
+	[SerializeField]
+	private StringSO dialogText;
+	[SerializeField]
+	private StringSO nameText;
 	[SerializeField]
 	private GameObject choicePanel;
 	[SerializeField]
 	private IntSO choiceIndex;
 	[SerializeField]
 	private SimpleChoiceListSO simpleChoiceList;
+	[SerializeField]
+	private GameInputSO input;
+
+	private bool waitingForChoice = false;
 
     private void Awake()
     {
 		choiceIndex.OnChanged += OnChooseChoice;
+		input.instance.UI.Select.performed += OnSubmit;
+    }
+
+    private void OnEnable()
+    {
+		input.instance.Enable();
+	}
+
+    private void OnDisable()
+    {
+		input.instance.Disable();
     }
     void Start()
 	{
-		// Remove the default message
-		//RemoveChildren();
 		StartStory();
 	}
 
@@ -39,70 +52,53 @@ public class InkController : MonoBehaviour
 	{
 		story = new Story(inkJSONAsset.text);
 		if (OnCreateStory != null) OnCreateStory(story);
-		RefreshView();
+		ProgressStory();
 	}
 
-	public void ProgressStory(InputAction.CallbackContext context)
+	public void ProgressStory()
     {
-		Debug.Log("Continue pressed.");
-		//if (story.canContinue)
-  //      {
-		//	//display a line of text
-		//	string text = story.Continue();
-		//	text = text.Trim();
-		//	dialogText.Value = text;
-  //      }
-		//else if (story.currentChoices.Count > 0)
-  //      {
-		//	for (int i = 0; i < story.currentChoices.Count; i++)
-		//	{
-
-		//	}
-		//}
-		//else
-  //      {
-		//	//end dialog
-  //      }
-    }
-
-	// This is the main function called every time the story changes. It does a few things:
-	// Destroys all the old content and choices.
-	// Continues over all the lines of text, then displays all the choices. If there are no choices, the story is finished!
-	void RefreshView()
-	{
-		dialogText.Value = "";
-		// Read all the content until we can't continue any more
-		while (story.canContinue)
-		{
-			// Continue gets the next line of the story
-			string text = story.Continue();
-			// This removes any white space from the text.
-			text = text.Trim();
-			dialogText.Value += text;
-			// Display the text on screen!
-			//CreateContentView(text);
-		}
-
-		// Display all the choices, if there are any!
-		if (story.currentChoices.Count > 0)
-		{
+        if (story.canContinue)
+        {
+            //display a line of text
+            string text = story.Continue();
+            text = text.Trim();
+            dialogText.Value = text;
+			if (story.currentTags.Count > 0)
+			{
+				nameText.Value = story.currentTags[0];
+			}
+			else
+            {
+				nameText.Value = "";
+            }
+        }
+        else if (story.currentChoices.Count > 0)
+        {
 			simpleChoiceList.Value.Clear();
 			for (int i = 0; i < story.currentChoices.Count; i++)
 			{
 				simpleChoiceList.Value.Add(new SimpleChoice(story.currentChoices[i].index, story.currentChoices[i].text));
 			}
 			simpleChoiceList.UpdateChoices();
-		}
-		// If we've read all the content and there's no choices, the story is finished!
-		else
-		{
+			waitingForChoice = true;
+        }
+        else
+        {
+            //end dialog
+        }
+    }
 
-		}
-	}
+	public void OnSubmit(InputAction.CallbackContext context)
+    {
+		if (waitingForChoice)
+			return;
+		ProgressStory();
+    }
 
 	void OnChooseChoice(int selectedChoice)
     {
+		waitingForChoice = false;
 		story.ChooseChoiceIndex(selectedChoice);
-		RefreshView();
+		ProgressStory();
 	}
 }

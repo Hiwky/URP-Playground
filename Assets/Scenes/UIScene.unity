@@ -494,7 +494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &642146868
 RectTransform:
   m_ObjectHideFlags: 0
@@ -589,7 +589,6 @@ GameObject:
   - component: {fileID: 997503035}
   - component: {fileID: 997503034}
   - component: {fileID: 997503033}
-  - component: {fileID: 997503032}
   m_Layer: 0
   m_Name: DialogManager
   m_TagString: Untagged
@@ -597,60 +596,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &997503032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997503031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: d8f0256312381134cb7c91dc7c930744, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InkController, Assembly-CSharp
-        m_MethodName: ProgressStory
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: f0a4c2f1-3972-434d-9ec5-3eb1b77aec44
-    m_ActionName: UI/Select[/Keyboard/enter,/Keyboard/numpadEnter]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b3376f2f-a6f9-41b5-a651-7aaea4ca0aa8
-    m_ActionName: UI/Up[/Keyboard/w,/Keyboard/upArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4ee31aca-7a22-490a-8220-0c59bcd67dac
-    m_ActionName: UI/Down[/Keyboard/s,/Keyboard/downArrow]
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!114 &997503033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -669,6 +614,7 @@ MonoBehaviour:
   characterName: {fileID: 1419008815}
   buttonPrefab: {fileID: 1895377766523305639, guid: b35abdec95c568845a2beed18f6253c3, type: 3}
   choicePanel: {fileID: 642146867}
+  namePanel: {fileID: 1058654784}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   choiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
 --- !u!114 &997503034
@@ -684,11 +630,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inkJSONAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
-  canvas: {fileID: 546990351}
   dialogText: {fileID: 11400000, guid: 8be8380286d79d94e847117cb50f4b5d, type: 2}
+  nameText: {fileID: 11400000, guid: 929103abe10fb1546948f2d5ac31fea4, type: 2}
   choicePanel: {fileID: 642146867}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   simpleChoiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
+  input: {fileID: 11400000, guid: 43c7a3d0ca5d7b749b2130182172006b, type: 2}
 --- !u!4 &997503035
 Transform:
   m_ObjectHideFlags: 0
@@ -723,7 +670,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1058654785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -742,7 +689,7 @@ RectTransform:
   m_AnchorMin: {x: 0.04555885, y: 0.3}
   m_AnchorMax: {x: 0.25066176, y: 0.34741992}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 153.87012, y: 1.3049866}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1058654786
 MonoBehaviour:
@@ -928,10 +875,10 @@ RectTransform:
   m_Father: {fileID: 1058654785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 10, y: -22.110012}
+  m_SizeDelta: {x: 392.71, y: 40.22}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1419008815
 MonoBehaviour:

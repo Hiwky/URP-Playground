@@ -613,8 +613,10 @@ MonoBehaviour:
   text: {fileID: 485434058}
   characterName: {fileID: 1419008815}
   buttonPrefab: {fileID: 1895377766523305639, guid: b35abdec95c568845a2beed18f6253c3, type: 3}
+  dialogCanvas: {fileID: 546990348}
   choicePanel: {fileID: 642146867}
   namePanel: {fileID: 1058654784}
+  textPanel: {fileID: 1522339726}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   choiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
 --- !u!114 &997503034
@@ -632,7 +634,6 @@ MonoBehaviour:
   inkJSONAsset: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
   dialogText: {fileID: 11400000, guid: 8be8380286d79d94e847117cb50f4b5d, type: 2}
   nameText: {fileID: 11400000, guid: 929103abe10fb1546948f2d5ac31fea4, type: 2}
-  choicePanel: {fileID: 642146867}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   simpleChoiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
   input: {fileID: 11400000, guid: 43c7a3d0ca5d7b749b2130182172006b, type: 2}
@@ -988,6 +989,8 @@ GameObject:
   - component: {fileID: 1522339727}
   - component: {fileID: 1522339729}
   - component: {fileID: 1522339728}
+  - component: {fileID: 1522339731}
+  - component: {fileID: 1522339730}
   m_Layer: 5
   m_Name: DialogPanel
   m_TagString: Untagged
@@ -1053,3 +1056,71 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1522339726}
   m_CullTransparentMesh: 1
+--- !u!114 &1522339730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522339726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5734f82eb404be488fa6fe874a52e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1522339731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522339726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 0
+  m_Colors:
+    m_NormalColor: {r: 0.5, g: 0.31941482, b: 0.035377353, a: 1}
+    m_HighlightedColor: {r: 0.1254902, g: 0.1254902, b: 0.1254902, a: 1}
+    m_PressedColor: {r: 0.3679245, g: 0.02603239, b: 0.02603239, a: 1}
+    m_SelectedColor: {r: 0.509434, g: 0.0985226, b: 0.0985226, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1522339728}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 997503034}
+        m_TargetAssemblyTypeName: InkController, Assembly-CSharp
+        m_MethodName: ProgressStory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

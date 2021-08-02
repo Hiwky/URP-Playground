@@ -67,6 +67,17 @@ public class @GameControls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 },
                 {
+                    ""name"": """",
+                    ""id"": ""9ee8912f-6fb3-4280-8368-f3fe20123680"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
                     ""name"": ""WASD"",
                     ""id"": ""9024ba35-0dd0-40ff-94dc-cf6c2150db47"",
                     ""path"": ""2DVector"",
@@ -135,13 +146,7 @@ public class @GameControls : IInputActionCollection, IDisposable
             ]
         }
     ],
-    ""controlSchemes"": [
-        {
-            ""name"": ""GameControlScheme"",
-            ""bindingGroup"": ""GameControlScheme"",
-            ""devices"": []
-        }
-    ]
+    ""controlSchemes"": []
 }");
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -242,15 +247,6 @@ public class @GameControls : IInputActionCollection, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
-    private int m_GameControlSchemeSchemeIndex = -1;
-    public InputControlScheme GameControlSchemeScheme
-    {
-        get
-        {
-            if (m_GameControlSchemeSchemeIndex == -1) m_GameControlSchemeSchemeIndex = asset.FindControlSchemeIndex("GameControlScheme");
-            return asset.controlSchemes[m_GameControlSchemeSchemeIndex];
-        }
-    }
     public interface IUIActions
     {
         void OnSelect(InputAction.CallbackContext context);

@@ -7,8 +7,10 @@ using UnityEngine.EventSystems;
 
 public class DialogManager : MonoBehaviour
 {
-    public StringSO dialogText;
-    public StringSO nameText;
+    [SerializeField]
+    private StringSO dialogText;
+    [SerializeField]
+    private StringSO nameText;
     [SerializeField]
     private TextMeshProUGUI text;
     [SerializeField]
@@ -16,17 +18,19 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private Button buttonPrefab = null;
     [SerializeField]
+    private GameObject dialogCanvas;
+    [SerializeField]
     private GameObject choicePanel;
     [SerializeField]
     private GameObject namePanel;
+    [SerializeField]
+    private GameObject textPanel;
     [SerializeField]
     private IntSO choiceIndex;
     [SerializeField]
     private SimpleChoiceListSO choiceList;
 
-    private 
-    // Start is called before the first frame update
-    void Awake()
+    private void Awake()
     {
         dialogText.OnChanged += DialogChanged;
         nameText.OnChanged += NameChanged;
@@ -36,6 +40,7 @@ public class DialogManager : MonoBehaviour
     private void DialogChanged(string dialog)
     {
         text.text = dialog;
+        EventSystem.current.SetSelectedGameObject(textPanel);
     }
 
     private void NameChanged(string newName)
@@ -44,7 +49,8 @@ public class DialogManager : MonoBehaviour
         {
             namePanel.SetActive(true);
             characterName.text = newName;
-        } else
+        }
+        else
         {
             namePanel.SetActive(false);
         }
@@ -57,6 +63,8 @@ public class DialogManager : MonoBehaviour
         {
             SimpleChoice choice = choiceList.Value[i];
             Button button = CreateChoiceButton(choice.choiceText);
+            if (i == 0)
+                EventSystem.current.SetSelectedGameObject(button.gameObject);
 
             button.onClick.AddListener(delegate {
                 OnChooseChoice(choice.index);
@@ -84,6 +92,7 @@ public class DialogManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         RemoveChoices();
         choicePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(textPanel);
     }
 
     void RemoveChoices()
@@ -91,7 +100,7 @@ public class DialogManager : MonoBehaviour
         int childCount = choicePanel.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            GameObject.Destroy(choicePanel.transform.GetChild(i).gameObject);
+            Destroy(choicePanel.transform.GetChild(i).gameObject);
         }
     }
 }

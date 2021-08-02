@@ -54,6 +54,17 @@
                     "isPartOfComposite": false
                 },
                 {
+                    "name": "",
+                    "id": "9ee8912f-6fb3-4280-8368-f3fe20123680",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
                     "name": "WASD",
                     "id": "9024ba35-0dd0-40ff-94dc-cf6c2150db47",
                     "path": "2DVector",
@@ -122,11 +133,5 @@
             ]
         }
     ],
-    "controlSchemes": [
-        {
-            "name": "GameControlScheme",
-            "bindingGroup": "GameControlScheme",
-            "devices": []
-        }
-    ]
+    "controlSchemes": []
 }

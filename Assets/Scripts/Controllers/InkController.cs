@@ -17,8 +17,6 @@ public class InkController : MonoBehaviour
 	[SerializeField]
 	private StringSO nameText;
 	[SerializeField]
-	private GameObject choicePanel;
-	[SerializeField]
 	private IntSO choiceIndex;
 	[SerializeField]
 	private SimpleChoiceListSO simpleChoiceList;
@@ -30,7 +28,7 @@ public class InkController : MonoBehaviour
     private void Awake()
     {
 		choiceIndex.OnChanged += OnChooseChoice;
-		input.instance.UI.Select.performed += OnSubmit;
+		//input.instance.UI.Select.performed += OnSubmit;
     }
 
     private void OnEnable()
@@ -42,7 +40,7 @@ public class InkController : MonoBehaviour
     {
 		input.instance.Disable();
     }
-    void Start()
+    private void Start()
 	{
 		StartStory();
 	}
@@ -59,7 +57,6 @@ public class InkController : MonoBehaviour
     {
         if (story.canContinue)
         {
-            //display a line of text
             string text = story.Continue();
             text = text.Trim();
             dialogText.Value = text;

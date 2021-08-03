@@ -24,7 +24,7 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private GameObject namePanel;
     [SerializeField]
-    private GameObject textPanel;
+    private GameObject dialogPanel;
     [SerializeField]
     private IntSO choiceIndex;
     [SerializeField]
@@ -40,7 +40,7 @@ public class DialogManager : MonoBehaviour
     private void DialogChanged(string dialog)
     {
         text.text = dialog;
-        EventSystem.current.SetSelectedGameObject(textPanel);
+        EventSystem.current.SetSelectedGameObject(dialogPanel);
     }
 
     private void NameChanged(string newName)
@@ -73,7 +73,7 @@ public class DialogManager : MonoBehaviour
 
     }
 
-    Button CreateChoiceButton(string text)
+    private Button CreateChoiceButton(string text)
     {
         // Creates the button from a prefab
         Button choice = Instantiate(buttonPrefab) as Button;
@@ -86,21 +86,26 @@ public class DialogManager : MonoBehaviour
         return choice;
     }
 
-    void OnChooseChoice(int selectedChoice)
+    private void OnChooseChoice(int selectedChoice)
     {
         choiceIndex.Value = selectedChoice;
         EventSystem.current.SetSelectedGameObject(null);
         RemoveChoices();
         choicePanel.SetActive(false);
-        EventSystem.current.SetSelectedGameObject(textPanel);
+        EventSystem.current.SetSelectedGameObject(dialogPanel);
     }
 
-    void RemoveChoices()
+    private void RemoveChoices()
     {
         int childCount = choicePanel.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
             Destroy(choicePanel.transform.GetChild(i).gameObject);
         }
+    }
+
+    public void ToggleDialogCanvas()
+    {
+        dialogCanvas.SetActive(!dialogCanvas.activeInHierarchy);
     }
 }

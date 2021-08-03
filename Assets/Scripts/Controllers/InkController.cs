@@ -33,12 +33,12 @@ public class InkController : MonoBehaviour
 
     private void OnEnable()
     {
-		input.instance.Enable();
+		//input.instance.Enable();
 	}
 
     private void OnDisable()
     {
-		input.instance.Disable();
+		//input.instance.Disable();
     }
     private void Start()
 	{

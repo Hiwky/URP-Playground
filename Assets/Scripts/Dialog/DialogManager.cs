@@ -104,6 +104,11 @@ public class DialogManager : MonoBehaviour
         }
     }
 
+    public void ToggleInDialog()
+    {
+        ToggleDialogCanvas();
+    }
+
     public void ToggleDialogCanvas()
     {
         dialogCanvas.SetActive(!dialogCanvas.activeInHierarchy);

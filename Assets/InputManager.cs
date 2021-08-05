@@ -24,7 +24,6 @@ public class InputManager : MonoBehaviour
 
     private void StartDialog(InputAction.CallbackContext context)
     {
-        Debug.Log("Dialog started");
         OnDialogStarted.Raise();
     }
 }

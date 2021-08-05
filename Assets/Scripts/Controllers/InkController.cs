@@ -8,7 +8,7 @@ using UnityEngine.InputSystem;
 public class InkController : MonoBehaviour
 {
 	[SerializeField]
-	private TextAsset inkJSONAsset = null;
+	private TextAssetSO currentStory;
 	public Story story;
 
 	public static event Action<Story> OnCreateStory;
@@ -21,15 +21,23 @@ public class InkController : MonoBehaviour
 	[SerializeField]
 	private SimpleChoiceListSO simpleChoiceList;
 	[SerializeField]
-	private GameInputSO input;
+	private VoidEvent OnDialogEnded;
 
 	private bool waitingForChoice = false;
 
     private void Awake()
     {
 		choiceIndex.OnChanged += OnChooseChoice;
+		currentStory.OnChanged += StartNewStory;
 		//input.instance.UI.Select.performed += OnSubmit;
     }
+
+    private void StartNewStory(TextAsset newStory)
+    {
+		story = new Story(newStory.text);
+		if (OnCreateStory != null) OnCreateStory(story);
+		ProgressStory();
+	}
 
     private void OnEnable()
     {
@@ -42,13 +50,13 @@ public class InkController : MonoBehaviour
     }
     private void Start()
 	{
-		StartStory();
+		//StartStory();
 	}
 
 	// Creates a new Story object with the compiled story which we can then play!
-	void StartStory()
+	public void StartStory(TextAsset storyJson)
 	{
-		story = new Story(inkJSONAsset.text);
+		story = new Story(storyJson.text);
 		if (OnCreateStory != null) OnCreateStory(story);
 		ProgressStory();
 	}
@@ -81,7 +89,7 @@ public class InkController : MonoBehaviour
         }
         else
         {
-            //end dialog
+			OnDialogEnded.Raise();
         }
     }
 

@@ -70,7 +70,7 @@ public class DialogManager : MonoBehaviour
                 OnChooseChoice(choice.index);
             });
         }
-
+        dialogPanel.GetComponent<Button>().interactable = false;
     }
 
     private Button CreateChoiceButton(string text)
@@ -92,6 +92,7 @@ public class DialogManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         RemoveChoices();
         choicePanel.SetActive(false);
+        dialogPanel.GetComponent<Button>().interactable = true;
         EventSystem.current.SetSelectedGameObject(dialogPanel);
     }
 

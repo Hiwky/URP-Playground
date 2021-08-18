@@ -13,7 +13,7 @@ public class InkController : MonoBehaviour
 
 	public static event Action<Story> OnCreateStory;
 	[SerializeField]
-	private StringSO dialogText;
+	private StringSO dialogueText;
 	[SerializeField]
 	private StringSO nameText;
 	[SerializeField]
@@ -21,7 +21,10 @@ public class InkController : MonoBehaviour
 	[SerializeField]
 	private SimpleChoiceListSO simpleChoiceList;
 	[SerializeField]
-	private VoidEvent OnDialogEnded;
+	private VoidEvent OnDialogueEnded;
+
+	[SerializeField]
+	private GameStateSO State;
 
 	private bool waitingForChoice = false;
 
@@ -29,7 +32,6 @@ public class InkController : MonoBehaviour
     {
 		choiceIndex.OnChanged += OnChooseChoice;
 		currentStory.OnChanged += StartNewStory;
-		//input.instance.UI.Select.performed += OnSubmit;
     }
 
     private void StartNewStory(TextAsset newStory)
@@ -37,20 +39,6 @@ public class InkController : MonoBehaviour
 		story = new Story(newStory.text);
 		if (OnCreateStory != null) OnCreateStory(story);
 		ProgressStory();
-	}
-
-    private void OnEnable()
-    {
-		//input.instance.Enable();
-	}
-
-    private void OnDisable()
-    {
-		//input.instance.Disable();
-    }
-    private void Start()
-	{
-		//StartStory();
 	}
 
 	// Creates a new Story object with the compiled story which we can then play!
@@ -67,7 +55,7 @@ public class InkController : MonoBehaviour
         {
             string text = story.Continue();
             text = text.Trim();
-            dialogText.Value = text;
+            dialogueText.Value = text;
 			if (story.currentTags.Count > 0)
 			{
 				nameText.Value = story.currentTags[0];
@@ -89,7 +77,8 @@ public class InkController : MonoBehaviour
         }
         else
         {
-			OnDialogEnded.Raise();
+			OnDialogueEnded.Raise();
+			State.UpdateGameState(GameState.Gameplay);
         }
     }
 

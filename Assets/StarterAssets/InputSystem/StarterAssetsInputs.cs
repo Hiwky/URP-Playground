@@ -21,8 +21,6 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 #endif
-
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
@@ -45,9 +43,6 @@ namespace StarterAssets
 		{
 			SprintInput(value.isPressed);
 		}
-#else
-	// old input sys if we do decide to have it (most likely wont)...
-#endif
 
 
 		public void MoveInput(Vector2 newMoveDirection)

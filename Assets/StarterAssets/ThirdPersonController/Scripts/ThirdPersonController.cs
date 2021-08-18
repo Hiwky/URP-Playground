@@ -9,9 +9,6 @@ using UnityEngine.InputSystem;
 namespace StarterAssets
 {
 	[RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-	[RequireComponent(typeof(PlayerInput))]
-#endif
 	public class ThirdPersonController : MonoBehaviour
 	{
 		[Header("Player")]
@@ -84,7 +81,8 @@ namespace StarterAssets
 
 		private Animator _animator;
 		private CharacterController _controller;
-		private StarterAssetsInputs _input;
+		[SerializeField]
+		private GameInputSO _input;
 		private GameObject _mainCamera;
 
 		private const float _threshold = 0.01f;
@@ -104,7 +102,6 @@ namespace StarterAssets
 		{
 			_hasAnimator = TryGetComponent(out _animator);
 			_controller = GetComponent<CharacterController>();
-			_input = GetComponent<StarterAssetsInputs>();
 
 			AssignAnimationIDs();
 
@@ -114,9 +111,7 @@ namespace StarterAssets
 		}
 
 		private void Update()
-		{
-			_hasAnimator = TryGetComponent(out _animator);
-			
+		{			
 			JumpAndGravity();
 			GroundedCheck();
 			Move();

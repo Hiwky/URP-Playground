@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DialogManager : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     [SerializeField]
-    private StringSO dialogText;
+    private StringSO dialogueText;
     [SerializeField]
     private StringSO nameText;
     [SerializeField]
@@ -18,13 +18,13 @@ public class DialogManager : MonoBehaviour
     [SerializeField]
     private Button buttonPrefab = null;
     [SerializeField]
-    private GameObject dialogCanvas;
+    private GameObject dialogueCanvas;
     [SerializeField]
     private GameObject choicePanel;
     [SerializeField]
     private GameObject namePanel;
     [SerializeField]
-    private GameObject dialogPanel;
+    private GameObject dialoguePanel;
     [SerializeField]
     private IntSO choiceIndex;
     [SerializeField]
@@ -32,15 +32,15 @@ public class DialogManager : MonoBehaviour
 
     private void Awake()
     {
-        dialogText.OnChanged += DialogChanged;
+        dialogueText.OnChanged += DialogueChanged;
         nameText.OnChanged += NameChanged;
         choiceList.OnChoicesUpdated += CreateChoices;
     }
 
-    private void DialogChanged(string dialog)
+    private void DialogueChanged(string dialogue)
     {
-        text.text = dialog;
-        EventSystem.current.SetSelectedGameObject(dialogPanel);
+        text.text = dialogue;
+        EventSystem.current.SetSelectedGameObject(dialoguePanel);
     }
 
     private void NameChanged(string newName)
@@ -70,7 +70,7 @@ public class DialogManager : MonoBehaviour
                 OnChooseChoice(choice.index);
             });
         }
-        dialogPanel.GetComponent<Button>().interactable = false;
+        dialoguePanel.GetComponent<Button>().interactable = false;
     }
 
     private Button CreateChoiceButton(string text)
@@ -91,9 +91,7 @@ public class DialogManager : MonoBehaviour
         choiceIndex.Value = selectedChoice;
         EventSystem.current.SetSelectedGameObject(null);
         RemoveChoices();
-        choicePanel.SetActive(false);
-        dialogPanel.GetComponent<Button>().interactable = true;
-        EventSystem.current.SetSelectedGameObject(dialogPanel);
+        EventSystem.current.SetSelectedGameObject(dialoguePanel);
     }
 
     private void RemoveChoices()
@@ -103,15 +101,31 @@ public class DialogManager : MonoBehaviour
         {
             Destroy(choicePanel.transform.GetChild(i).gameObject);
         }
+        choicePanel.SetActive(false);
+        dialoguePanel.GetComponent<Button>().interactable = true;
     }
 
-    public void ToggleInDialog()
+    public void StartDialogue()
     {
-        ToggleDialogCanvas();
+        ToggleDialogueCanvas(true);
     }
 
-    public void ToggleDialogCanvas()
+    public void EndDialogue()
     {
-        dialogCanvas.SetActive(!dialogCanvas.activeInHierarchy);
+        RemoveChoices();
+        ToggleDialogueCanvas(false);
+    }
+
+    public void ToggleInDialogue()
+    {
+        if (dialogueCanvas.activeInHierarchy)
+            RemoveChoices();
+
+        ToggleDialogueCanvas(!dialogueCanvas.activeInHierarchy);
+    }
+
+    public void ToggleDialogueCanvas(bool enabled)
+    {
+        dialogueCanvas.SetActive(enabled);
     }
 }

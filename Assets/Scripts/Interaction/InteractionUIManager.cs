@@ -7,6 +7,13 @@ public class InteractionUIManager : MonoBehaviour
 {
     [SerializeField]
     private Image interactImage;
+    [SerializeField]
+    private DialogueEventChannel DialogueEventChannel;
+
+    private void Start()
+    {
+        DialogueEventChannel.OnDialogueStarted += ToggleImage;
+    }
 
     public void ToggleImage()
     {

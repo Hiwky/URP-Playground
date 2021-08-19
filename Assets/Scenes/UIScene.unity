@@ -239,6 +239,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5065915194363993733, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}
+      propertyPath: DialogueEventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
+    - target: {fileID: 5065915194363993734, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}
+      propertyPath: DialogueEventChannel
+      value: 
+      objectReference: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
     - target: {fileID: 5065915194363993735, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}
       propertyPath: unityEventResponse.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartDialogue
@@ -251,5 +259,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5065915194363993735, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}
+    - {fileID: 5065915194363993731, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 944e751cb2f7bc74db87da5b51e70ff5, type: 3}

@@ -22,6 +22,8 @@ public class InkController : MonoBehaviour
 	private SimpleChoiceListSO simpleChoiceList;
 	[SerializeField]
 	private VoidEvent OnDialogueEnded;
+	[SerializeField]
+	private DialogueEventChannel DialogueEventChannel;
 
 	[SerializeField]
 	private GameStateSO State;
@@ -77,7 +79,8 @@ public class InkController : MonoBehaviour
         }
         else
         {
-			OnDialogueEnded.Raise();
+			DialogueEventChannel.RaiseDialogueEndedEvent();
+			//OnDialogueEnded.Raise();
 			State.UpdateGameState(GameState.Gameplay);
         }
     }

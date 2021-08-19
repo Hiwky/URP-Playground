@@ -14,13 +14,11 @@ public class Interactor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-       // Debug.Log($"Collided with {other.gameObject.name}");
         _enterZone.Invoke(true, other.gameObject);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        //Debug.Log($"Collision with {other.gameObject.name} ended");
         _enterZone.Invoke(false, other.gameObject);
     }
 }

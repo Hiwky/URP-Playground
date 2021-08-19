@@ -7,10 +7,14 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField]
     private GameStateSO State;
+    [SerializeField]
+    private DialogueEventChannel DialogueEventChannel;
     // Start is called before the first frame update
     void Start()
     {
-       SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        DialogueEventChannel.OnDialogueStarted += SetStateDialogue;
+        DialogueEventChannel.OnDialogueEnded += SetStateGameplay;
     }
 
     public void SetStateGameplay()

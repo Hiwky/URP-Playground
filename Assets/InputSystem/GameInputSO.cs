@@ -10,8 +10,6 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
     public GameControls input;
     [Header("Scriptable Objects")]
     [SerializeField]
-    private VoidEvent OnDialogueStarted;
-    [SerializeField]
     private GameStateSO State;
 
     [Header("Character Input Values")]
@@ -30,18 +28,12 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
     [HideInInspector]
     public event Action OnInteractPressed;
 
-    //private void OnApplicationFocus(bool hasFocus)
-    //{
-    //    SetCursorState(cursorLocked);
-    //}
-
     private void OnEnable()
     {
         if (input == null)
             input = new GameControls();
 
         input.Enable();
-        input.Test.Test.performed += StartDialogue;
         input.Player.SetCallbacks(this);
         SetCursorState(cursorLocked);
         State.OnChanged += OnGameStateChanged;
@@ -68,13 +60,6 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
     private void SetCursorState(bool newState)
     {
         Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-    }
-
-    //temporary test method until I do interaction
-    private void StartDialogue(InputAction.CallbackContext context)
-    {
-        OnDialogueStarted.Raise();
-        State.UpdateGameState(GameState.Dialogue);
     }
 
     public void EnableUI()
@@ -151,7 +136,10 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        OnInteractPressed.Invoke();
+        if (context.performed)
+        {
+            OnInteractPressed.Invoke();
+        }
     }
     #endregion
 }

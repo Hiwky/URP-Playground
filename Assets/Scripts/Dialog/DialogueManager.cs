@@ -29,12 +29,16 @@ public class DialogueManager : MonoBehaviour
     private IntSO choiceIndex;
     [SerializeField]
     private SimpleChoiceListSO choiceList;
+    [SerializeField]
+    private DialogueEventChannel DialogueEventChannel;
 
     private void Awake()
     {
         dialogueText.OnChanged += DialogueChanged;
         nameText.OnChanged += NameChanged;
         choiceList.OnChoicesUpdated += CreateChoices;
+        DialogueEventChannel.OnDialogueStarted += StartDialogue;
+        DialogueEventChannel.OnDialogueEnded += EndDialogue;
     }
 
     private void DialogueChanged(string dialogue)

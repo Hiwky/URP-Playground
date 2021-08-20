@@ -9,14 +9,39 @@ public class InteractionUIManager : MonoBehaviour
     private Image interactImage;
     [SerializeField]
     private DialogueEventChannel DialogueEventChannel;
+    [SerializeField]
+    private InteractionTypeSO InteractionType;
+
+    private Canvas _canvas;
 
     private void Start()
     {
-        DialogueEventChannel.OnDialogueStarted += ToggleImage;
+        _canvas = GetComponent<Canvas>();
+        InteractionType.OnChanged += ToggleImage;
+        DialogueEventChannel.OnDialogueStarted += DisableCanvas;
+        DialogueEventChannel.OnDialogueEnded += EnableCanvas;
     }
 
-    public void ToggleImage()
+    private void ToggleImage(InteractionTypes interaction)
     {
-        interactImage.enabled = !interactImage.enabled;
+        switch (interaction)
+        {
+            case InteractionTypes.None:
+                interactImage.enabled = false;
+                break;
+            case InteractionTypes.Talk:
+                interactImage.enabled = true;
+                break;
+        }
+    }
+
+    private void EnableCanvas()
+    {
+        _canvas.enabled = true;
+    }
+
+    private void DisableCanvas()
+    {
+        _canvas.enabled = false;
     }
 }

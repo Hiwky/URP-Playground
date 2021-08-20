@@ -12,12 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44d32930613c4804091c9647ed12b5f2, type: 3}
   m_Name: Game Input
   m_EditorClassIdentifier: 
-  OnDialogueStarted: {fileID: 11400000, guid: 77e3cc501bc2e1549a411f8b52be05d6, type: 2}
   State: {fileID: 11400000, guid: 92abd4a71b21da74d8cf261cc49cb571, type: 2}
   move: {x: 0, y: 0}
   look: {x: 0, y: 0}
   jump: 0
   sprint: 0
   analogMovement: 0
-  cursorLocked: 1
+  cursorLocked: 0
   cursorInputForLook: 1

@@ -195,7 +195,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -332}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &542508511
@@ -474,7 +474,6 @@ GameObject:
   - component: {fileID: 801671137}
   - component: {fileID: 801671136}
   - component: {fileID: 801671135}
-  - component: {fileID: 801671134}
   m_Layer: 5
   m_Name: UICanvas
   m_TagString: Untagged
@@ -482,34 +481,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &801671134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 801671133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046293a341db58d4cb14707b2b91bfd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 95a557ab24be2404da7bba8cae18184d, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 801671135}
-        m_TargetAssemblyTypeName: InteractionUIManager, Assembly-CSharp
-        m_MethodName: ToggleImage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &801671135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,6 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactImage: {fileID: 496758793}
   DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
+  InteractionType: {fileID: 11400000, guid: d4f36e119f0c65c47be4526705c65a25, type: 2}
 --- !u!114 &801671136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -598,7 +570,7 @@ RectTransform:
   m_Children:
   - {fileID: 496758795}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -898,12 +870,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 902181425}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.925, y: 1.008, z: 11.29}
+  m_LocalPosition: {x: 0.925, y: 0, z: 11.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2132104154}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &902181427
 MonoBehaviour:
@@ -919,7 +891,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   story: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
   currentStory: {fileID: 11400000, guid: a2a0a6a6cf2c9f94899c00c22263770d, type: 2}
-  OnDialogStarted: {fileID: 11400000, guid: 77e3cc501bc2e1549a411f8b52be05d6, type: 2}
   DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
 --- !u!54 &902181428
 Rigidbody:
@@ -950,7 +921,7 @@ CapsuleCollider:
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1028513131
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1106,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 700051398}
+    - target: {fileID: 2070925442191277752, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
+      propertyPath: CameraCollisionFilter.m_Bits
+      value: 65
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
 --- !u!1 &1746540483
@@ -1253,6 +1228,10 @@ PrefabInstance:
       propertyPath: GroundLayers.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 4416926081852918491, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+      propertyPath: m_Center.y
+      value: 0.93
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
 --- !u!1 &1764214107
@@ -1343,6 +1322,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToggleInteractUI: {fileID: 11400000, guid: 95a557ab24be2404da7bba8cae18184d, type: 2}
   Input: {fileID: 11400000, guid: 43c7a3d0ca5d7b749b2130182172006b, type: 2}
+  InteractionType: {fileID: 11400000, guid: d4f36e119f0c65c47be4526705c65a25, type: 2}
 --- !u!1 &2004407178 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8944336655422409498, guid: f6d148d888ffbf54b9afe9936dfaec1f, type: 3}
@@ -1455,7 +1435,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2132104150}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 902181426}

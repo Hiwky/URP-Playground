@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class InteractionManager : MonoBehaviour
 {
     [SerializeField]
     private VoidEvent ToggleInteractUI;
     [SerializeField]
     private GameInputSO Input;
+    [SerializeField]
+    private InteractionTypeSO InteractionType;
 
     private GameObject _interactive = null;
 
@@ -27,13 +28,13 @@ public class InteractionManager : MonoBehaviour
 
     private void DisplayInteraction(GameObject interactive)
     {
-        ToggleInteractUI.Raise();
+        InteractionType.Value = InteractionTypes.Talk;
         _interactive = interactive;
     }
 
     private void RemoveInteraction()
     {
-        ToggleInteractUI.Raise();
+        InteractionType.Value = InteractionTypes.None;
         _interactive = null;
     }
 
@@ -41,7 +42,6 @@ public class InteractionManager : MonoBehaviour
     {
         if (_interactive != null)
         {
-            Debug.Log($"Interacting with {_interactive.name}");
             _interactive.GetComponent<IInteractive>().Interact();
         }
     }

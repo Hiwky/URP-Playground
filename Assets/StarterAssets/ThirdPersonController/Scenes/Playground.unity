@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33e6084245d188b408e0f30220d4d8cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  story: {fileID: 4900000, guid: 6cf48bb6d89824cc69e35b43f9a1aca6, type: 3}
+  story: {fileID: 4900000, guid: 1d1edc33a2270e04abfe0ce41d91e58e, type: 3}
   currentStory: {fileID: 11400000, guid: a2a0a6a6cf2c9f94899c00c22263770d, type: 2}
   DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
 --- !u!54 &902181428

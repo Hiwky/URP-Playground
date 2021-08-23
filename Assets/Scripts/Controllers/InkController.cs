@@ -24,9 +24,10 @@ public class InkController : MonoBehaviour
 	private VoidEvent OnDialogueEnded;
 	[SerializeField]
 	private DialogueEventChannel DialogueEventChannel;
-
 	[SerializeField]
 	private GameStateSO State;
+
+	private string saveData;
 
 	private bool waitingForChoice = false;
 
@@ -38,7 +39,16 @@ public class InkController : MonoBehaviour
 
     private void StartNewStory(TextAsset newStory)
     {
-		story = new Story(newStory.text);
+		if (story == null)
+		{
+			story = new Story(newStory.text);
+			saveData = story.state.ToJson();
+		}
+		else
+        {
+			story.state.LoadJson(saveData);
+			story.ChoosePathString("first_time");
+        }
 		if (OnCreateStory != null) OnCreateStory(story);
 		ProgressStory();
 	}
@@ -82,6 +92,7 @@ public class InkController : MonoBehaviour
 			DialogueEventChannel.RaiseDialogueEndedEvent();
 			//OnDialogueEnded.Raise();
 			State.UpdateGameState(GameState.Gameplay);
+			saveData = story.state.ToJson();
         }
     }
 

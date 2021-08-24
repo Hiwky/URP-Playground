@@ -567,13 +567,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ae4d2c20cbae12498aebabd30c33a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentStory: {fileID: 11400000, guid: a2a0a6a6cf2c9f94899c00c22263770d, type: 2}
+  _currentStory: {fileID: 4900000, guid: 1d1edc33a2270e04abfe0ce41d91e58e, type: 3}
   dialogueText: {fileID: 11400000, guid: 8be8380286d79d94e847117cb50f4b5d, type: 2}
   nameText: {fileID: 11400000, guid: 929103abe10fb1546948f2d5ac31fea4, type: 2}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   simpleChoiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
   OnDialogueEnded: {fileID: 11400000, guid: 2a238fc8c4910594cbdc80ea73fcbcfe, type: 2}
   State: {fileID: 11400000, guid: 92abd4a71b21da74d8cf261cc49cb571, type: 2}
+  DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
+  SaveLoadEventChannel: {fileID: 11400000, guid: c66429a3d1dbaf14e9c2a0189c1f5b72, type: 2}
 --- !u!114 &5065915194363993734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -597,6 +599,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 5065915192774779185}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   choiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
+  DialogueEventChannel: {fileID: 0}
 --- !u!114 &5065915194363993735
 MonoBehaviour:
   m_ObjectHideFlags: 0

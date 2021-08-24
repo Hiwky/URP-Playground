@@ -7,59 +7,62 @@ using UnityEngine.InputSystem;
 // This is a super bare bones example of how to play and display a ink story in Unity.
 public class InkController : MonoBehaviour
 {
-	[SerializeField]
-	private TextAssetSO currentStory;
+	private const string DEFAULT_PATH = "default_knot";	
+	public static event Action<Story> OnCreateStory;
+
 	public Story story;
 
-	public static event Action<Story> OnCreateStory;
-	[SerializeField]
-	private StringSO dialogueText;
-	[SerializeField]
-	private StringSO nameText;
-	[SerializeField]
-	private IntSO choiceIndex;
-	[SerializeField]
-	private SimpleChoiceListSO simpleChoiceList;
-	[SerializeField]
-	private VoidEvent OnDialogueEnded;
-	[SerializeField]
-	private DialogueEventChannel DialogueEventChannel;
-	[SerializeField]
-	private GameStateSO State;
+	[SerializeField] private TextAsset _currentStory;
+	[SerializeField] private StringSO dialogueText;
+	[SerializeField] private StringSO nameText;
+	[SerializeField] private IntSO choiceIndex;
+	[SerializeField] private SimpleChoiceListSO simpleChoiceList;
+	[SerializeField] private VoidEvent OnDialogueEnded;
+	[SerializeField] private GameStateSO State;
 
-	private string saveData;
+	[Header("Event Channels")]
+	[SerializeField] private DialogueEventChannel DialogueEventChannel;
+	[SerializeField] private SaveLoadEventChannel SaveLoadEventChannel;
 
+	private string _saveData;
 	private bool waitingForChoice = false;
 
     private void Awake()
     {
-		choiceIndex.OnChanged += OnChooseChoice;
-		currentStory.OnChanged += StartNewStory;
     }
+
+    private void Start()
+    {
+		choiceIndex.OnChanged += OnChooseChoice;
+		DialogueEventChannel.OnDialogueStarted += StartAtCurrentPath;
+		SaveLoadEventChannel.OnDataReadyToLoad += LoadStoryData;
+		SaveLoadEventChannel.OnRequestSaveData += SaveStoryData;
+		StartNewStory(_currentStory);
+	}
 
     private void StartNewStory(TextAsset newStory)
     {
-		if (story == null)
-		{
-			story = new Story(newStory.text);
-			saveData = story.state.ToJson();
-		}
-		else
-        {
-			story.state.LoadJson(saveData);
-			story.ChoosePathString("first_time");
-        }
+		story = new Story(newStory.text);
+		// Ink method to update story in editor
 		if (OnCreateStory != null) OnCreateStory(story);
-		ProgressStory();
+		//ProgressStory();
 	}
 
-	// Creates a new Story object with the compiled story which we can then play!
-	public void StartStory(TextAsset storyJson)
-	{
-		story = new Story(storyJson.text);
-		if (OnCreateStory != null) OnCreateStory(story);
+	private void StartAtCurrentPath()
+    {
+		StartAtPath(DialogueEventChannel.GetCurrentPath());
+    }
+
+	private void StartAtPath(string pathName)
+    {
+		if (pathName.Length == 0)
+		{
+			pathName = DEFAULT_PATH;
+		}
+		story.ChoosePathString(pathName);
 		ProgressStory();
-	}
+
+    }
 
 	public void ProgressStory()
     {
@@ -92,7 +95,7 @@ public class InkController : MonoBehaviour
 			DialogueEventChannel.RaiseDialogueEndedEvent();
 			//OnDialogueEnded.Raise();
 			State.UpdateGameState(GameState.Gameplay);
-			saveData = story.state.ToJson();
+			_saveData = story.state.ToJson();
         }
     }
 
@@ -109,4 +112,16 @@ public class InkController : MonoBehaviour
 		story.ChooseChoiceIndex(selectedChoice);
 		ProgressStory();
 	}
+
+	private void SaveStoryData()
+    {
+		SaveLoadEventChannel.CurrentSaveData.storyData = story.state.ToJson();
+		SaveLoadEventChannel.RaiseDataReadyToSave();
+    }
+
+	private void LoadStoryData()
+    {
+		Debug.Log($"{SaveLoadEventChannel.CurrentSaveData.storyData}");
+		story.state.LoadJson(SaveLoadEventChannel.CurrentSaveData.storyData);
+    }
 }

@@ -10,6 +10,8 @@ public class DialogueEventChannel : ScriptableObject
     public event Action OnDialogueStarted;
     public event Action OnDialogueEnded;
 
+    private string _currentPath;
+
     public void RaiseDialogueStartedEvent()
     {
         OnDialogueStarted?.Invoke();
@@ -18,5 +20,15 @@ public class DialogueEventChannel : ScriptableObject
     public void RaiseDialogueEndedEvent()
     {
         OnDialogueEnded?.Invoke();
+    }
+
+    public string GetCurrentPath()
+    {
+        return _currentPath;
+    }
+
+    public void SetCurrentPath(string newPath)
+    {
+        _currentPath = newPath;
     }
 }

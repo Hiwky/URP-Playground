@@ -31,3 +31,7 @@ Where would you like to go?
 ===counter===
 Hey! You've visited this knot {counter} times.
 -> hub
+
+===default_knot===
+You're not supposed to see this!
+-> DONE

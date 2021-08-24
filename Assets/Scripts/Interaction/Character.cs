@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class Character : MonoBehaviour, IInteractive
 {
-    [SerializeField]
-    private TextAsset story;
-    [SerializeField]
-    private TextAssetSO currentStory;
-    [SerializeField]
-    private DialogueEventChannel DialogueEventChannel;
+    [SerializeField] private DialogueEventChannel DialogueEventChannel;
+    [SerializeField] private string _dialoguePath;
     public void Interact()
     {
-        currentStory.Value = story;
+        DialogueEventChannel.SetCurrentPath(_dialoguePath);
         DialogueEventChannel.RaiseDialogueStartedEvent();
     }
 }

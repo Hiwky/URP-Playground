@@ -599,7 +599,7 @@ MonoBehaviour:
   dialoguePanel: {fileID: 5065915192774779185}
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   choiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
-  DialogueEventChannel: {fileID: 0}
+  DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
 --- !u!114 &5065915194363993735
 MonoBehaviour:
   m_ObjectHideFlags: 0

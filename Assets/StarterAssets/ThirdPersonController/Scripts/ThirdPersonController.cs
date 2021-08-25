@@ -81,9 +81,8 @@ namespace StarterAssets
 
 		private Animator _animator;
 		private CharacterController _controller;
-		[SerializeField]
-		private GameInputSO _input;
-		private GameObject _mainCamera;
+		[SerializeField] private GameInputSO _input;
+		[SerializeField]public GameObject _mainCamera; //TODO: temporary fix when loading from main menu
 
 		private const float _threshold = 0.01f;
 

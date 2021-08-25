@@ -32,12 +32,15 @@ public class SaveManager : MonoBehaviour
     [ContextMenu("Load")]
     private void Load()
     {
-        using (StreamReader streamReader = new StreamReader("SaveGame.json"))
+        if (File.Exists("SaveGame.json"))
+        {
+            using (StreamReader streamReader = new StreamReader("SaveGame.json"))
             {
-            var json = streamReader.ReadToEnd();
-            var saveData = JsonUtility.FromJson<SaveData>(json);
-            SaveLoadEventChannel.CurrentSaveData = saveData;
-            SaveLoadEventChannel.RaiseDataReadyToLoad();
+                var json = streamReader.ReadToEnd();
+                var saveData = JsonUtility.FromJson<SaveData>(json);
+                SaveLoadEventChannel.CurrentSaveData = saveData;
+                SaveLoadEventChannel.RaiseDataReadyToLoad();
             }
+        }
     }
 }

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        //SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
         DialogueEventChannel.OnDialogueStarted += SetStateDialogue;
         DialogueEventChannel.OnDialogueEnded += SetStateGameplay;
     }

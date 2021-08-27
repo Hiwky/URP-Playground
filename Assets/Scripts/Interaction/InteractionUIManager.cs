@@ -5,21 +5,15 @@ using UnityEngine.UI;
 
 public class InteractionUIManager : MonoBehaviour
 {
-    [SerializeField]
-    private Image interactImage;
-    [SerializeField]
-    private DialogueEventChannel DialogueEventChannel;
-    [SerializeField]
-    private InteractionTypeSO InteractionType;
-
-    private Canvas _canvas;
+    [SerializeField] private Image interactImage;
+    [SerializeField] private DialogueEventChannel DialogueEventChannel;
+    [SerializeField] private InteractionTypeSO InteractionType;
 
     private void Start()
     {
-        _canvas = GetComponent<Canvas>();
         InteractionType.OnChanged += ToggleImage;
-        DialogueEventChannel.OnDialogueStarted += DisableCanvas;
-        DialogueEventChannel.OnDialogueEnded += EnableCanvas;
+        DialogueEventChannel.OnDialogueStarted += DisablePrompt;
+        DialogueEventChannel.OnDialogueEnded += EnablePrompt;
     }
 
     private void ToggleImage(InteractionTypes interaction)
@@ -35,13 +29,13 @@ public class InteractionUIManager : MonoBehaviour
         }
     }
 
-    private void EnableCanvas()
+    private void EnablePrompt()
     {
-        _canvas.enabled = true;
+        interactImage.enabled = true;
     }
 
-    private void DisableCanvas()
+    private void DisablePrompt()
     {
-        _canvas.enabled = false;
+        interactImage.enabled = false;
     }
 }

@@ -121,7 +121,6 @@ public class InkController : MonoBehaviour
 
 	private void LoadStoryData()
     {
-		Debug.Log($"{SaveLoadEventChannel.CurrentSaveData.storyData}");
 		story.state.LoadJson(SaveLoadEventChannel.CurrentSaveData.storyData);
     }
 }

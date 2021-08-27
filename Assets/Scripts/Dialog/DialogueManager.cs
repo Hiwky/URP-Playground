@@ -120,14 +120,6 @@ public class DialogueManager : MonoBehaviour
         ToggleDialogueCanvas(false);
     }
 
-    public void ToggleInDialogue()
-    {
-        if (dialogueCanvas.activeInHierarchy)
-            RemoveChoices();
-
-        ToggleDialogueCanvas(!dialogueCanvas.activeInHierarchy);
-    }
-
     public void ToggleDialogueCanvas(bool enabled)
     {
         dialogueCanvas.SetActive(enabled);

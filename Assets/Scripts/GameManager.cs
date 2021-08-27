@@ -5,16 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameStateSO State;
-    [SerializeField]
-    private DialogueEventChannel DialogueEventChannel;
-    // Start is called before the first frame update
+    [SerializeField] private GameStateSO State;
+    [SerializeField] private DialogueEventChannel DialogueEventChannel;
+
     void Start()
     {
-        //SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive);
         DialogueEventChannel.OnDialogueStarted += SetStateDialogue;
         DialogueEventChannel.OnDialogueEnded += SetStateGameplay;
+        QualitySettings.vSyncCount = 1;
     }
 
     public void SetStateGameplay()
@@ -26,4 +24,10 @@ public class GameManager : MonoBehaviour
     {
         State.UpdateGameState(GameState.Dialogue);
     }
+
+    public void SetStatePause()
+    {
+        State.UpdateGameState(GameState.Pause);
+    }
+
 }

@@ -25,8 +25,8 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
     public bool cursorLocked = false;
     public bool cursorInputForLook = false;
 
-    [HideInInspector]
-    public event Action OnInteractPressed;
+    [HideInInspector] public event Action OnInteractPressed;
+    [HideInInspector] public event Action OnPausePressed;
 
     private void OnEnable()
     {
@@ -36,13 +36,14 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
         input.Enable();
         input.Player.SetCallbacks(this);
         SetCursorState(cursorLocked);
-        State.OnChanged += OnGameStateChanged;
+        State.OnChanged += OnGameStateChanged;input.UI.Cancel.performed += OnPause;
     }
 
     private void OnGameStateChanged(GameState state)
     {
         switch(state)
         {
+            case GameState.Pause:
             case GameState.Dialogue:
                 EnableUI();
                 break;
@@ -139,6 +140,15 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
         if (context.performed)
         {
             OnInteractPressed.Invoke();
+        }
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        Debug.Log("Pause pressed", this);
+        if (context.performed)
+        {
+            OnPausePressed.Invoke();
         }
     }
     #endregion

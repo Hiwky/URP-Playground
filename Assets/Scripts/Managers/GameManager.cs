@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     {
         DialogueEventChannel.OnDialogueStarted += SetStateDialogue;
         DialogueEventChannel.OnDialogueEnded += SetStateGameplay;
-        QualitySettings.vSyncCount = 1;
     }
 
     public void SetStateGameplay()

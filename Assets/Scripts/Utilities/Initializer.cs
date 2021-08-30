@@ -9,12 +9,12 @@ public class Initializer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive).completed += LoadMainMenu;
+        SceneManager.LoadSceneAsync(StringConstants.SCENE_PERSISTENT_MANAGERS, LoadSceneMode.Additive).completed += LoadMainMenu;
     }
 
     private void LoadMainMenu(AsyncOperation obj)
     {
-        SceneManager.LoadSceneAsync(2, LoadSceneMode.Additive).completed += UnloadThis;
+        SceneManager.LoadSceneAsync(StringConstants.SCENE_MAIN_MENU, LoadSceneMode.Additive).completed += UnloadThis;
     }
 
     private void UnloadThis(AsyncOperation obj)

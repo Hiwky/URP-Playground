@@ -4,7 +4,7 @@ using UnityEngine;
 using Ink.Runtime;
 using System;
 
-[CreateAssetMenu(fileName = "DialogueEventChannel", menuName = "Scriptable Objects/Event Channels/DialogueEventChannel")]
+//[CreateAssetMenu(fileName = "DialogueEventChannel", menuName = "Scriptable Objects/Event Channels/DialogueEventChannel")]
 public class DialogueEventChannel : ScriptableObject
 {
     public event Action OnDialogueStarted;

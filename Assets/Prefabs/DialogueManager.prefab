@@ -165,10 +165,10 @@ RectTransform:
   m_Father: {fileID: 5065915194295493886}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 10, y: -22.110012}
-  m_SizeDelta: {x: 392.71, y: 40.22}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -22.110003}
+  m_SizeDelta: {x: 392.70996, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5065915192809960847
 CanvasRenderer:
@@ -421,7 +421,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5065915194295493886
 RectTransform:
   m_ObjectHideFlags: 0
@@ -440,7 +440,7 @@ RectTransform:
   m_AnchorMin: {x: 0.04555885, y: 0.3}
   m_AnchorMax: {x: 0.25066176, y: 0.34741992}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 153.87012, y: 1.3049866}
+  m_SizeDelta: {x: 18.912405, y: -6.993497}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &5065915194295493884
 CanvasRenderer:
@@ -531,8 +531,6 @@ GameObject:
   - component: {fileID: 5065915194363993732}
   - component: {fileID: 5065915194363993733}
   - component: {fileID: 5065915194363993734}
-  - component: {fileID: 5065915194363993735}
-  - component: {fileID: 5065915194363993731}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -576,6 +574,7 @@ MonoBehaviour:
   State: {fileID: 11400000, guid: 92abd4a71b21da74d8cf261cc49cb571, type: 2}
   DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
   SaveLoadEventChannel: {fileID: 11400000, guid: c66429a3d1dbaf14e9c2a0189c1f5b72, type: 2}
+  InteractionEventChannel: {fileID: 11400000, guid: bd5ba757526fcad488bf922e4268e0e4, type: 2}
 --- !u!114 &5065915194363993734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -600,62 +599,6 @@ MonoBehaviour:
   choiceIndex: {fileID: 11400000, guid: c961590f24f249a48af6eb3d0f4b0705, type: 2}
   choiceList: {fileID: 11400000, guid: 71db9871b7c80584fad67dbc77620f2c, type: 2}
   DialogueEventChannel: {fileID: 11400000, guid: 57003b69ae9603c46b905e7ada2c2dbf, type: 2}
---- !u!114 &5065915194363993735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5065915194363993736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046293a341db58d4cb14707b2b91bfd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 77e3cc501bc2e1549a411f8b52be05d6, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5065915194363993734}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: StartDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &5065915194363993731
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5065915194363993736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 046293a341db58d4cb14707b2b91bfd7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 2a238fc8c4910594cbdc80ea73fcbcfe, type: 2}
-  unityEventResponse:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5065915194363993734}
-        m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
-        m_MethodName: EndDialogue
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &5065915194717441164
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,7 +811,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5065915194757023667}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acb376198c34b7348a21877a11df9508, type: 3}
   m_Name: 

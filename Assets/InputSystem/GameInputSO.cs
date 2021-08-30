@@ -139,7 +139,7 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
     {
         if (context.performed)
         {
-            OnInteractPressed.Invoke();
+            OnInteractPressed?.Invoke();
         }
     }
 
@@ -148,7 +148,7 @@ public class GameInputSO : ScriptableObject, GameControls.IPlayerActions
         Debug.Log("Pause pressed", this);
         if (context.performed)
         {
-            OnPausePressed.Invoke();
+            OnPausePressed?.Invoke();
         }
     }
     #endregion

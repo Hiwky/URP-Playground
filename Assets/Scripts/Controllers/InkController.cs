@@ -4,7 +4,6 @@ using Ink.Runtime;
 using TMPro;
 using UnityEngine.InputSystem;
 
-// This is a super bare bones example of how to play and display a ink story in Unity.
 public class InkController : MonoBehaviour
 {
 	private const string DEFAULT_PATH = "default_knot";	
@@ -23,6 +22,7 @@ public class InkController : MonoBehaviour
 	[Header("Event Channels")]
 	[SerializeField] private DialogueEventChannel DialogueEventChannel;
 	[SerializeField] private SaveLoadEventChannel SaveLoadEventChannel;
+	[SerializeField] private InteractionEventChannel InteractionEventChannel;
 
 	private string _saveData;
 	private bool waitingForChoice = false;
@@ -45,7 +45,8 @@ public class InkController : MonoBehaviour
 		story = new Story(newStory.text);
 		// Ink method to update story in editor
 		if (OnCreateStory != null) OnCreateStory(story);
-		//ProgressStory();
+
+		BindExternalFunctions();
 	}
 
 	private void StartAtCurrentPath()
@@ -93,6 +94,7 @@ public class InkController : MonoBehaviour
         else
         {
 			DialogueEventChannel.RaiseDialogueEndedEvent();
+			InteractionEventChannel.RaiseInteractionEndEvent();
 			//OnDialogueEnded.Raise();
 			State.UpdateGameState(GameState.Gameplay);
 			_saveData = story.state.ToJson();
@@ -123,4 +125,18 @@ public class InkController : MonoBehaviour
     {
 		story.state.LoadJson(SaveLoadEventChannel.CurrentSaveData.storyData);
     }
+
+	private void BindExternalFunctions()
+    {
+		story.BindExternalFunction("LogLine", (string text) =>
+		{
+			Debug.Log(text);
+		});
+
+		story.BindExternalFunction("Camera", (string cameraName) =>
+		{
+			InteractionEventChannel.RaiseChangeCameraEvent(cameraName);
+		});
+
+	}
 }

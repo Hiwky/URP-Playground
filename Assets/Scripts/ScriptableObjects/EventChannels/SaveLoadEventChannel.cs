@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SaveLoadEventChannel", menuName = "Scriptable Objects/Event Channels/SaveLoadEventChannel")]
+//[CreateAssetMenu(fileName = "SaveLoadEventChannel", menuName = "Scriptable Objects/Event Channels/SaveLoadEventChannel")]
 public class SaveLoadEventChannel : ScriptableObject
 {
     public event Action OnRequestSaveData;

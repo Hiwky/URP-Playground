@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 
 public class PauseMenuManager : MonoBehaviour
 {
+    [Header("Event Channels")]
+    [SerializeField] private LoadSceneEventChannel LoadSceneEventChannel;
     [SerializeField] private SaveLoadEventChannel SaveLoadEventChannel;
     [SerializeField] private GameInputSO Input;
     [SerializeField] private GameStateSO State;
@@ -50,7 +52,6 @@ public class PauseMenuManager : MonoBehaviour
 
     public void Return()
     {
-        Debug.Log("Return");
         PauseScreen.SetActive(false);
         State.ResetToPreviousGameState();
         isPaused = false;
@@ -60,6 +61,13 @@ public class PauseMenuManager : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void OnClickMainMenu()
+    {
+        //Show warning
+        LoadSceneEventChannel.RequestLoadScene(StringConstants.SCENE_MAIN_MENU);
+        Return();
     }
 
     private void ReselectObject()

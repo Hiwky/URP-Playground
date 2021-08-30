@@ -1,3 +1,5 @@
+EXTERNAL LogLine(text)
+EXTERNAL Camera(cameraName)
 -> first_time
 
 ===first_time===
@@ -14,6 +16,8 @@ Ok then, bye!
 
 ===second_knot===
 This is the second knot.
+I'm logging a line now! 
+~ LogLine("Logging from Ink!")
     -> hub
 
 ===hub===
@@ -29,6 +33,7 @@ Where would you like to go?
     Goodbye! ->DONE
 
 ===counter===
+~ Camera("face")
 Hey! You've visited this knot {counter} times.
 -> hub
 

@@ -8,6 +8,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Event Channels")]
     [SerializeField] private SaveLoadEventChannel SaveLoadEventChannel;
+    [SerializeField] private LoadSceneEventChannel LoadSceneEventChannel;
 
     [SerializeField] private GameStateSO State;
 
@@ -17,20 +18,22 @@ public class MainMenuManager : MonoBehaviour
     }
     public void OnClickNewGame()
     {
-        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive).completed += UnloadMenu;
+        LoadSceneEventChannel.RequestLoadScene(StringConstants.SCENE_PLAYGROUND);
+        //SceneManager.LoadSceneAsync(StringConstants.SCENE_PLAYGROUND, LoadSceneMode.Additive).completed += UnloadMenu;
         State.UpdateGameState(GameState.Gameplay);
     }
 
     private void UnloadMenu(AsyncOperation obj)
     {
-        SceneManager.UnloadSceneAsync(2);
+        SceneManager.UnloadSceneAsync(StringConstants.SCENE_MAIN_MENU);
     }
 
     public void OnClickLoad()
     {
         SaveLoadEventChannel.RequestLoadData();
+        LoadSceneEventChannel.RequestLoadScene(StringConstants.SCENE_PLAYGROUND);
         State.UpdateGameState(GameState.Gameplay);
-        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive).completed += UnloadMenu;
+        //SceneManager.LoadSceneAsync(StringConstants.SCENE_PLAYGROUND, LoadSceneMode.Additive).completed += UnloadMenu;
     }
 
     public void OnClickQuit()
